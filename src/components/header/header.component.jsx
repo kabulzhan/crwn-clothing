@@ -11,7 +11,6 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 const Header = ({ currentUser, toggleCart, cartOpen }) => {
-  console.log(cartOpen);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
