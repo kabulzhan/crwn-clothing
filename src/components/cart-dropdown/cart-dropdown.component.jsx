@@ -16,11 +16,13 @@ const CartDropdown = ({ cartItems, dispatch }) => (
         <span className="empty-message">Your cart is empty</span>
       )}
     </div>
-    <Link to="/checkout">
-      <CustomButton onClick={() => dispatch(toggleCart())}>
-        GO TO CHECKOUT
-      </CustomButton>
-    </Link>
+    <div className="cart-button">
+      <Link to="/checkout">
+        <CustomButton onClick={() => dispatch(toggleCart())}>
+          GO TO CHECKOUT
+        </CustomButton>
+      </Link>
+    </div>
   </div>
 );
 

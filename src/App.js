@@ -29,9 +29,6 @@ class App extends React.Component {
         });
         console.log(this.state);
       } else setCurrentUser(userAuth);
-      // this.setState({ currentUser: user });
-
-      // console.log(user);
     });
   }
 
@@ -43,6 +40,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />

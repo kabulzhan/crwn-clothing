@@ -7,6 +7,13 @@ import {
 } from "../../redux/cart/cart.selectors";
 import "./checkout.styles.scss";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import StripeCheckoutForm from "../../components/stripe-form/stripe-form.component";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51HmRqfIED8UWHjNrwXOR40ozBJXn7GhELMOYlnbA450d8jJoPar0sM7eYzxrbDKEURD6QEQIOCqYoVO29BhNmKAT00kXifl4k4"
+);
 
 const CheckoutPage = ({ cartItems, total }) => (
   <div className="checkout-page">
@@ -33,6 +40,14 @@ const CheckoutPage = ({ cartItems, total }) => (
     <div className="total">
       <span>TOTAL: $ {total}</span>
     </div>
+    <div className="test-warning">
+      *Please use the following test cradit card for payments*
+      <br />
+      4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
+    </div>
+    <Elements stripe={stripePromise}>
+      <StripeCheckoutForm />
+    </Elements>
   </div>
 );
 
