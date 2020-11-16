@@ -13,7 +13,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
   "pk_test_51HmRqfIED8UWHjNrwXOR40ozBJXn7GhELMOYlnbA450d8jJoPar0sM7eYzxrbDKEURD6QEQIOCqYoVO29BhNmKAT00kXifl4k4"
-);
+).catch((error) => console.log(error));
 
 const CheckoutPage = ({ cartItems, total }) => (
   <div className="checkout-page">
@@ -45,9 +45,11 @@ const CheckoutPage = ({ cartItems, total }) => (
       <br />
       4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
     </div>
-    <Elements stripe={stripePromise}>
-      <StripeCheckoutForm />
-    </Elements>
+    {stripePromise && (
+      <Elements stripe={stripePromise}>
+        <StripeCheckoutForm />
+      </Elements>
+    )}
   </div>
 );
 

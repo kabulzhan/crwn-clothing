@@ -16,7 +16,6 @@ export const selectShopNomenclature = createSelector(
 );
 
 export const selectCollection = (collectionUrlParam) =>
-  createSelector(
-    [selectShopNomenclature],
-    (nomenclature) => nomenclature[collectionUrlParam]
+  createSelector([selectShopNomenclature], (nomenclature) =>
+    nomenclature[collectionUrlParam] ? nomenclature[collectionUrlParam] : null
   );
