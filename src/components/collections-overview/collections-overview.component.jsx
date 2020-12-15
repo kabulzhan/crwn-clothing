@@ -13,8 +13,8 @@ const CollectionsOverview = ({ collections }) => (
   </div>
 );
 
-const mapStateToProject = createStructuredSelector({
+const mapStateToProps = createStructuredSelector({
   collections: selectShopNomenclature,
 });
 
-export default connect(mapStateToProject)(CollectionsOverview);
+export default connect(mapStateToProps)(CollectionsOverview);
