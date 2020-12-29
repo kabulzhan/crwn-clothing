@@ -5,13 +5,16 @@ import { createStructuredSelector } from "reselect";
 import "./collections-overview.styles.scss";
 import CollectionPreview from "../collection-preview/collection-preview.component";
 
-const CollectionsOverview = ({ collections }) => (
-  <div className="collections-overview">
-    {Object.values(collections).map(({ id, ...otherCollectionProps }) => (
-      <CollectionPreview key={id} {...otherCollectionProps} />
-    ))}
-  </div>
-);
+const CollectionsOverview = ({ collections }) => {
+  console.log("Collection overview component has been called.");
+  return (
+    <div className="collections-overview">
+      {Object.values(collections).map(({ id, ...otherCollectionProps }) => (
+        <CollectionPreview key={id} {...otherCollectionProps} />
+      ))}
+    </div>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   collections: selectShopNomenclature,
