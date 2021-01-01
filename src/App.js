@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
 
@@ -11,10 +11,14 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
 
-const App = ({ currentUser, checkUserSession }) => {
+const App = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    checkUserSession();
-  }, [checkUserSession]);
+    dispatch(checkUserSession());
+  }, [dispatch]);
+
   console.log("App component has been called");
   return (
     <div>
@@ -36,8 +40,4 @@ const App = ({ currentUser, checkUserSession }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentUser: selectCurrentUser(state),
-});
-
-export default connect(mapStateToProps, { checkUserSession })(App);
+export default App;

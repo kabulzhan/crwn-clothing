@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
 import { selectShopNomenclature } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
 import CollectionOverviewContainer from "../../components/collections-overview/collections-overview.container";
 import CollectionPageContainer from "../collection/collection.container";
 
-const ShopPage = ({ fetchCollectionsStart, nomenclature, match }) => {
+const ShopPage = ({ match }) => {
+  const nomenclature = useSelector(selectShopNomenclature);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (!Object.keys(nomenclature).length) fetchCollectionsStart();
-  }, [fetchCollectionsStart, nomenclature]);
+    if (!Object.keys(nomenclature).length) dispatch(fetchCollectionsStart());
+  }, [nomenclature, dispatch]);
 
   console.log("Shop component has been called");
   return (
@@ -29,12 +31,4 @@ const ShopPage = ({ fetchCollectionsStart, nomenclature, match }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  nomenclature: selectShopNomenclature,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+export default ShopPage;

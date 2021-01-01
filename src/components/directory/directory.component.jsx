@@ -1,10 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 import MenuItem from "../menu-item/menu-item.component";
 import "./directory.styles.scss";
 
-const Directory = ({ sections }) => {
+const Directory = (/*{ sections }*/) => {
+  const sections = useSelector(selectDirectorySections);
+  console.log("Directory component has been called");
   return (
     <div className="directory-menu">
       {sections.map((item) => (
@@ -14,8 +16,4 @@ const Directory = ({ sections }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  sections: selectDirectorySections(state),
-});
-
-export default connect(mapStateToProps)(Directory);
+export default Directory;
